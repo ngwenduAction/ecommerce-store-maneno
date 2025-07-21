@@ -5,23 +5,24 @@ import MainNav from "@/components/main-nav";
 import getCategories from "@/actions/get-categories";
 import NavbarActions from "@/components/navbar-actions";
 
-// alternative: ctrl + shift + r = hard refresh
 export const revalidate = 0;
 
 const Navbar = async () => {
   const categories = await getCategories();
 
   return (
-    <div className="border-b">
-      <Container>
-        <div className="relative px-4 sm:px-6 lg:px-8 flex h-16 items-center">
-          <Link href="/" className="ml-4 flex lg:ml-0 gap-x-2">
-            <p className="font-bold text-xl">STORE</p>
-          </Link>
-          <MainNav data={categories} />
-          <NavbarActions />
-        </div>
-      </Container>
+    <div className="fixed w-full bg-white z-10 shadow-sm">
+      <div className="border-b">
+        <Container>
+          <div className="flex h-16 items-center justify-between px-4 lg:px-0">
+            <Link href="/" className="flex items-center gap-x-2">
+              <span className="text-xl font-bold">E-Commerce Store</span>
+            </Link>
+            <MainNav data={categories} />
+            <NavbarActions storeId="yourStoreId" />
+          </div>
+        </Container>
+      </div>
     </div>
   );
 };

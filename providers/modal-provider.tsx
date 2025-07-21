@@ -4,7 +4,9 @@ import PreviewModal from "@/components/preview-modal";
 
 import { useEffect, useState } from "react";
 
-const ModalProvider = () => {
+const ModalProvider: React.FC<{ children?: React.ReactNode }> = ({
+  children,
+}) => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {

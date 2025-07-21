@@ -4,7 +4,7 @@ import { Urbanist } from "next/font/google";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import ModalProvider from "@/providers/modal-provider";
-import ToastProvider from "@/providers/toast-provider";
+import { ToastProvider } from "@/providers/toast-provider";
 
 import "./globals.css";
 
@@ -17,17 +17,21 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  params: { storeId },
 }: {
   children: React.ReactNode;
+  params: { storeId: string };
 }) {
   return (
-    <html lang="en">
-      <body className={font.className}>
-        <ModalProvider />
-        <ToastProvider />
-        <Navbar />
-        {children}
-        <Footer />
+    <html lang="en" className={font.className}>
+      <body className="min-h-screen bg-gray-50">
+        <ToastProvider>
+          <ModalProvider>
+            <Navbar storeId={storeId} />
+            <main className="pt-16">{children}</main>
+            <Footer />
+          </ModalProvider>
+        </ToastProvider>
       </body>
     </html>
   );
