@@ -6,8 +6,8 @@ import NavbarActions from "@/components/navbar-actions";
 
 export const revalidate = 0;
 
-const Navbar = async () => {
-  const categories = await getCategories();
+const Navbar = async ({ storeId }: { storeId: string }) => {
+  const categories = await getCategories(storeId);
 
   return (
     <div className="border-b">

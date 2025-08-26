@@ -13,17 +13,22 @@ export const metadata: Metadata = {
   description: "Store",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: { storeId: string };
 }) {
+  // TODO: Replace this with the actual store ID logic as needed
+  const { storeId } = params;
+
   return (
     <html lang="en">
       <body className={urban.className}>
         <ModalProvider />
         <ToastProvider />
-        <Navbar />
+        <Navbar storeId={storeId} />
         {children}
         <Footer />
       </body>
