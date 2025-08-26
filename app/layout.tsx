@@ -1,5 +1,3 @@
-import Footer from "@/components/footer";
-import Navbar from "@/components/navbar";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Urbanist } from "next/font/google";
@@ -13,24 +11,17 @@ export const metadata: Metadata = {
   description: "Store",
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
-  params,
 }: {
   children: React.ReactNode;
-  params: { storeId: string };
 }) {
-  // TODO: Replace this with the actual store ID logic as needed
-  const { storeId } = params;
-
   return (
     <html lang="en">
       <body className={urban.className}>
         <ModalProvider />
         <ToastProvider />
-        <Navbar storeId={storeId} />
         {children}
-        <Footer />
       </body>
     </html>
   );
