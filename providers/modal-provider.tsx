@@ -1,12 +1,9 @@
 "use client";
 
 import PreviewModal from "@/components/preview-modal";
-
 import { useEffect, useState } from "react";
 
-const ModalProvider: React.FC<{ children?: React.ReactNode }> = ({
-  children,
-}) => {
+const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -17,11 +14,6 @@ const ModalProvider: React.FC<{ children?: React.ReactNode }> = ({
     return null;
   }
 
-  return (
-    <>
-      <PreviewModal />
-    </>
-  );
+  return <PreviewModal />;
 };
-
 export default ModalProvider;
