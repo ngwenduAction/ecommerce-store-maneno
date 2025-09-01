@@ -15,20 +15,15 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
-  params,
 }: {
   children: React.ReactNode;
-  params: { storeId: string };
 }) {
-  // TODO: Replace this with the actual store ID logic as needed
-  const { storeId } = params;
-
   return (
     <html lang="en">
       <body className={urban.className}>
         <ModalProvider />
         <ToastProvider />
-        <Navbar storeId={storeId} />
+        <Navbar />
         {children}
         <Footer />
       </body>
