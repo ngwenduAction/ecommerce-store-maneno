@@ -1,20 +1,37 @@
-import { ReactNode } from "react";
-import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
-import Container from "@/components/ui/container";
+import Navbar from "@/components/navbar";
+import "./globals.css";
+import type { Metadata } from "next";
+import { Urbanist } from "next/font/google";
+import ModalProvider from "@/providers/modal-provider";
+import ToastProvider from "@/providers/toast-provider";
 
-export default function StoreLayout({
+const urban = Urbanist({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: "Store",
+  description: "Store",
+};
+
+export default async function RootLayout({
   children,
   params,
 }: {
-  children: ReactNode;
+  children: React.ReactNode;
   params: { storeId: string };
 }) {
+  // TODO: Replace this with the actual store ID logic as needed
+  const { storeId } = params;
+
   return (
-    <>
-      <Navbar storeId={params.storeId} />
-      <Container>{children}</Container>
-      <Footer />
-    </>
+    <html lang="en">
+      <body className={urban.className}>
+        <ModalProvider />
+        <ToastProvider />
+        <Navbar storeId={storeId} />
+        {children}
+        <Footer />
+      </body>
+    </html>
   );
 }
